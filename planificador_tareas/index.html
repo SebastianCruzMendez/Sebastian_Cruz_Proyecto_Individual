@@ -3,161 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estructura Base - Bootstrap con Filtros</title>
-  <!-- Bootstrap 5 CSS CDN -->
+  <title>Planificador de Tareas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons CDN (Opcional) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
 
-  <!-- HEADER -->
   <header class="bg-primary text-white py-3 mb-4 shadow-sm">
     <div class="container">
-      <h1 class="h3 mb-0">[ HEADER / TÍTULO PRINCIPAL ]</h1>
+      <h1 class="h3 mb-0"><i class="bi bi-list-check me-2"></i>Planificador de Tareas</h1>
     </div>
   </header>
 
   <main class="container mb-5">
     <div class="row g-4">
       
-      <!-- COLUMNA IZQUIERDA: FORMULARIO -->
-      <div class="col-md-5 col-lg-4">
-        <div class="card shadow-sm border-0">
-          
+      <div class="col-lg-4">
+        <div class="card shadow-sm border-0 sticky-top" style="top: 1rem;">
           <div class="card-header bg-white py-3">
-            <h2 class="h5 card-title mb-0">[ TÍTULO FORMULARIO ]</h2>
+            <h2 class="h5 card-title mb-0">Nuevas Tareas</h2>
           </div>
-          
           <div class="card-body">
             <form onsubmit="return false;">
-              
-              <!-- Campo 1: Nombre Tarea -->
               <div class="mb-3">
-                <label for="campoNombre" class="form-label fw-bold">[ ETIQUETA: NOMBRE TAREA ]</label>
-                <input type="text" class="form-control" id="campoNombre" placeholder="[ Placeholder: Nombre tarea ]">
+                <label for="nombreTarea" class="form-label fw-bold">Nombre tarea</label>
+                <input type="text" class="form-control" id="nombreTarea" placeholder="Ej: Pagar recibos">
               </div>
 
-              <!-- Campo 2: Categoría -->
               <div class="mb-3">
-                <label for="campoCategoria" class="form-label fw-bold">[ ETIQUETA: CATEGORÍA ]</label>
-                <select class="form-select" id="campoCategoria">
-                  <option selected disabled>[ Seleccionar Categoría... ]</option>
-                  <option>[ Opción 1 ]</option>
-                  <option>[ Opción 2 ]</option>
+                <label for="categoria" class="form-label fw-bold">Categoría</label>
+                <select class="form-select" id="categoria">
+                  <option selected disabled>Seleccionar categoría...</option>
+                  <option>Trabajo</option>
+                  <option>Hogar</option>
+                  <option>Mascota</option>
+                  <option>Estudio</option>
                 </select>
               </div>
 
-              <!-- Campo 3: Fecha entrega -->
               <div class="mb-3">
-                <label for="campoFecha" class="form-label fw-bold">[ ETIQUETA: FECHA ENTREGA ]</label>
-                <input type="date" class="form-control" id="campoFecha">
+                <label for="fechaEntrega" class="form-label fw-bold">Fecha de entrega</label>
+                <input type="date" class="form-control" id="fechaEntrega">
               </div>
 
-              <!-- Campo 4: Descripción -->
               <div class="mb-3">
-                <label for="campoDescripcion" class="form-label fw-bold">[ ETIQUETA: DESCRIPCIÓN ]</label>
-                <textarea class="form-control" id="campoDescripcion" rows="3" placeholder="[ Placeholder: Descripción ]"></textarea>
+                <label for="descripcion" class="form-label fw-bold">Descripción</label>
+                <textarea class="form-control" id="descripcion" rows="3" placeholder="Detalles de la tarea..."></textarea>
               </div>
 
-              <!-- Botón Agregar Tarea -->
               <button type="submit" class="btn btn-primary w-100">
-                <i class="bi bi-plus-lg me-1"></i> [ BOTÓN AGREGAR TAREA ]
+                <i class="bi bi-plus-lg me-1"></i> Agregar Tarea
               </button>
-              
             </form>
           </div>
         </div>
       </div>
 
-      <!-- COLUMNA DERECHA: FILTROS + LISTA DE TAREAS -->
-      <div class="col-md-7 col-lg-8">
+      <div class="col-lg-8">
         
-        <!-- SECCIÓN DE FILTROS (Agregada según el Figma) -->
+        <!-- SECCIÓN DE FILTROS -->
         <div class="card shadow-sm border-0 mb-4">
-          <div class="card-body">
-            <h2 class="h6 fw-bold mb-3"><i class="bi bi-funnel me-1"></i> [ TÍTULO: FILTRO TAREAS ]</h2>
-            <form class="row g-2 align-items-center" onsubmit="return false;">
-              
-              <!-- Filtro por Fecha -->
-              <div class="col-sm-6 col-md-4">
-                <label class="visually-hidden" for="filtroFecha">[ Filtro Fecha ]</label>
-                <input type="date" class="form-control form-control-sm" id="filtroFecha" title="Filtrar por fecha">
+          <div class="card-body py-3">
+            <h3 class="h6 fw-bold mb-3"><i class="bi bi-funnel me-1"></i> Filtro Tareas</h3>
+            <form class="row g-2" onsubmit="return false;">
+              <div class="col-sm-4">
+                <input type="date" class="form-control form-control-sm" title="Filtrar por fecha">
               </div>
-
-              <!-- Filtro por Categoría -->
-              <div class="col-sm-6 col-md-4">
-                <label class="visually-hidden" for="filtroCategoria">[ Filtro Categoría ]</label>
-                <select class="form-select form-select-sm" id="filtroCategoria">
-                  <option selected>[ FILTRO: CATEGORÍA ]</option>
-                  <option>[ Opción 1 ]</option>
-                  <option>[ Opción 2 ]</option>
+              <div class="col-sm-4">
+                <select class="form-select form-select-sm">
+                  <option selected>Todas las categorías</option>
+                  <option>Hogar</option>
+                  <option>Trabajo</option>
+                  <option>Mascota</option>
+                  <option>Estudio</option>
                 </select>
               </div>
-
-              <!-- Filtro por Estado (Completa / Incompleta) -->
-              <div class="col-sm-12 col-md-4">
-                <label class="visually-hidden" for="filtroEstado">[ Filtro Estado ]</label>
-                <select class="form-select form-select-sm" id="filtroEstado">
-                  <option selected>[ FILTRO: ESTADO ]</option>
-                  <option>[ COMPLETA ]</option>
-                  <option>[ INCOMPLETA ]</option>
+              <div class="col-sm-4">
+                <select class="form-select form-select-sm">
+                  <option selected>Todos los estados</option>
+                  <option>Pendiente</option>
+                  <option>En Proceso</option>
+                  <option>Completada</option>
                 </select>
               </div>
-
             </form>
           </div>
         </div>
 
-        <!-- LISTA DE TAREAS -->
+        <!-- RECUADRO / CONTENEDOR PRINCIPAL DE TAREAS -->
         <div class="card shadow-sm border-0">
           
+          <!-- Encabezado del contenedor con contador -->
           <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-            <h2 class="h5 card-title mb-0">[ TÍTULO SECCIÓN TAREAS ]</h2>
-            <span class="badge bg-secondary">[ CONTADOR / ESTADO ]</span>
+            <h2 class="h5 mb-0 fw-bold">Lista de Tareas</h2>
+            <span class="badge bg-primary rounded-pill">Tareas registradas</span>
           </div>
-          
-          <div class="card-body">
+
+          <!-- ÁREA SCROLLEABLE (max-height y overflow-y-auto) -->
+          <div class="card-body overflow-y-auto p-3" style="max-height: 500px;">
             
-            <div class="list-group list-group-flush">
+            <div class="row row-cols-1 g-3">
               
-              <!-- Tarea #1 -->
-              <div class="list-group-item py-3 px-0 border-bottom">
-                <div class="d-flex w-100 justify-content-between align-items-start mb-1">
-                  <h3 class="h6 mb-1 text-dark">[ NOMBRE DE LA TAREA #1 ]</h3>
-                  <span class="badge bg-info text-dark">[ CATEGORÍA ]</span>
-                </div>
-                <p class="mb-2 text-muted small">[ DESCRIPCIÓN DE LA TAREA ]</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <small class="text-secondary"><i class="bi bi-calendar-event me-1"></i> [ FECHA ]</small>
-                  <div>
-                    <span class="badge bg-success me-2">[ ESTADO: COMPLETA ]</span>
-                    <button class="btn btn-sm btn-outline-danger" title="Acción">[ BOTÓN ACCIÓN ]</button>
+              <!-- TARJETA 1 -->
+              <div class="col">
+                <div class="card border shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h3 class="h6 card-title mb-0 fw-bold">Sacar la basura</h3>
+                      <span class="badge bg-light text-body border">Hogar</span>
+                    </div>
+                    <p class="card-text text-muted small mb-3">Alistar las bolsas para sacar, cambiar las bolsas a las canecas y separar el reciclaje.</p>
+                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                      <div>
+                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle me-1"></i>Pendiente</span>
+                        <!-- <span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>En Desarrollo</span> -->
+                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>05/08/2026</small>
+                      </div>
+                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Tarea #2 -->
-              <div class="list-group-item py-3 px-0 border-bottom">
-                <div class="d-flex w-100 justify-content-between align-items-start mb-1">
-                  <h3 class="h6 mb-1 text-dark">[ NOMBRE DE LA TAREA #2 ]</h3>
-                  <span class="badge bg-warning text-dark">[ CATEGORÍA ]</span>
-                </div>
-                <p class="mb-2 text-muted small">[ DESCRIPCIÓN DE LA TAREA ]</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <small class="text-secondary"><i class="bi bi-calendar-event me-1"></i> [ FECHA ]</small>
-                  <div>
-                    <span class="badge bg-warning text-dark me-2">[ ESTADO: INCOMPLETA ]</span>
-                    <button class="btn btn-sm btn-outline-danger" title="Acción">[ BOTÓN ACCIÓN ]</button>
+              <!-- TARJETA 2 -->
+              <div class="col">
+                <div class="card border shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h3 class="h6 card-title mb-0 fw-bold">Construir mi proyecto personal</h3>
+                      <span class="badge bg-light text-body border">Estudio</span>
+                    </div>
+                    <p class="card-text text-muted small mb-3">Inicializar el proyecto, crear rama main, estructurar con Bootstrap y vincularlo con GitHub.</p>
+                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                      <div>
+                        <span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>En Desarrollo</span>
+                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>05/08/2026</small>
+                      </div>
+                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>
 
-            </div>
+              <!-- TARJETA 3 -->
+              <div class="col">
+                <div class="card border shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h3 class="h6 card-title mb-0 fw-bold">Control Ramona</h3>
+                      <span class="badge bg-light text-body border">Mascota</span>
+                    </div>
+                    <p class="card-text text-muted small mb-3">Llevar a Ramona al veterinario para control y vacunación.</p>
+                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                      <div>
+                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Completada</span>
+                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>04/08/2026</small>
+                      </div>
+                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          </div>
-        </div>
+              <!-- TARJETA 4 -->
+              <div class="col">
+                <div class="card border shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h3 class="h6 card-title mb-0 fw-bold">Hacer lista de mercado</h3>
+                      <span class="badge bg-light text-body border">Hogar</span>
+                    </div>
+                    <p class="card-text text-muted small mb-3">Verificar que insumos de cocina y aseo se agotaron para comprar.</p>
+                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                      <div>
+                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle me-1"></i>Pendiente</span>
+                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>15/08/2026</small>
+                      </div>
+                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TARJETA 5 -->
+              <div class="col">
+                <div class="card border shadow-sm">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h3 class="h6 card-title mb-0 fw-bold">Arreglar CV</h3>
+                      <span class="badge bg-light text-body border">Trabajo</span>
+                    </div>
+                    <p class="card-text text-muted small mb-3">Rediseñar mi hoja de vida, ordenarla segun el formato brindado por Generation.</p>
+                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                      <div>
+                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle me-1"></i>Pendiente</span>
+                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>15/08/2026</small>
+                      </div>
+                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- Fin de Grid Interno -->
+
+          </div> <!-- Fin del área scrolleable -->
+        </div> <!-- Fin de Card Contenedor -->
         
       </div>
 
