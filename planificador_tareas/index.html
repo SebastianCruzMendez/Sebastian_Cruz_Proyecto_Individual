@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planificador de Tareas</title>
+  <!-- Bootstrap 5 CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-light">
 
+  <!-- HEADER -->
   <header class="bg-primary text-white py-3 mb-4 shadow-sm">
     <div class="container">
       <h1 class="h3 mb-0"><i class="bi bi-list-check me-2"></i>Planificador de Tareas</h1>
@@ -19,37 +22,56 @@
   <main class="container mb-5">
     <div class="row g-4">
       
+      <!-- FORMULARIO -->
       <div class="col-lg-4">
         <div class="card shadow-sm border-0 sticky-top" style="top: 1rem;">
           <div class="card-header bg-white py-3">
-            <h2 class="h5 card-title mb-0">Nuevas Tareas</h2>
+            <h2 class="h5 card-title mb-0">Nueva Tarea</h2>
           </div>
           <div class="card-body">
-            <form onsubmit="return false;">
+            
+            <!-- ALERTA DE ERROR -->
+            <div id="alertError" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <span id="alertMessage">Por favor, completa todos los campos requeridos.</span>
+            </div>
+
+            <form id="taskForm">
               <div class="mb-3">
-                <label for="nombreTarea" class="form-label fw-bold">Nombre tarea</label>
-                <input type="text" class="form-control" id="nombreTarea" placeholder="Ej: Pagar recibos">
+                <label for="newTaskNameInput" class="form-label fw-bold">Nombre tarea</label>
+                <input type="text" class="form-control" id="newTaskNameInput" placeholder="Ej: Comprar alimento">
               </div>
 
+              <!-- CATEGORÍAS ACTUALIZADAS -->
               <div class="mb-3">
-                <label for="categoria" class="form-label fw-bold">Categoría</label>
-                <select class="form-select" id="categoria">
-                  <option selected disabled>Seleccionar categoría...</option>
-                  <option>Trabajo</option>
-                  <option>Hogar</option>
-                  <option>Mascota</option>
-                  <option>Estudio</option>
+                <label for="newTaskCategory" class="form-label fw-bold">Categoría</label>
+                <select class="form-select" id="newTaskCategory">
+                  <option value="" selected disabled>Seleccionar categoría...</option>
+                  <option value="Hogar">Hogar</option>
+                  <option value="Trabajo">Trabajo</option>
+                  <option value="Estudio">Estudio</option>
+                  <option value="Mascota">Mascota</option>
                 </select>
               </div>
 
               <div class="mb-3">
-                <label for="fechaEntrega" class="form-label fw-bold">Fecha de entrega</label>
-                <input type="date" class="form-control" id="fechaEntrega">
+                <label for="newTaskDescription" class="form-label fw-bold">Descripción</label>
+                <textarea class="form-control" id="newTaskDescription" rows="3" placeholder="Detalles de la tarea..."></textarea>
               </div>
 
               <div class="mb-3">
-                <label for="descripcion" class="form-label fw-bold">Descripción</label>
-                <textarea class="form-control" id="descripcion" rows="3" placeholder="Detalles de la tarea..."></textarea>
+                <label for="newTaskDueDate" class="form-label fw-bold">Fecha de entrega</label>
+                <input type="date" class="form-control" id="newTaskDueDate">
+              </div>
+
+              <div class="mb-3">
+                <label for="newTaskStatus" class="form-label fw-bold">Estado</label>
+                <select class="form-select" id="newTaskStatus">
+                  <option value="" selected disabled>Seleccionar estado...</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="Completada">Completada</option>
+                </select>
               </div>
 
               <button type="submit" class="btn btn-primary w-100">
@@ -60,163 +82,59 @@
         </div>
       </div>
 
+      <!-- SECCIÓN DE TAREAS Y FILTROS -->
       <div class="col-lg-8">
         
-        <!-- SECCIÓN DE FILTROS -->
+        <!-- FILTROS -->
         <div class="card shadow-sm border-0 mb-4">
           <div class="card-body py-3">
             <h3 class="h6 fw-bold mb-3"><i class="bi bi-funnel me-1"></i> Filtro Tareas</h3>
-            <form class="row g-2" onsubmit="return false;">
+            <div class="row g-2">
               <div class="col-sm-4">
-                <input type="date" class="form-control form-control-sm" title="Filtrar por fecha">
+                <input type="date" id="filterDate" class="form-control form-control-sm" title="Filtrar por fecha">
               </div>
               <div class="col-sm-4">
-                <select class="form-select form-select-sm">
-                  <option selected>Todas las categorías</option>
-                  <option>Hogar</option>
-                  <option>Trabajo</option>
-                  <option>Mascota</option>
-                  <option>Estudio</option>
+                <select id="filterCategory" class="form-select form-select-sm">
+                  <option value="">Todas las categorías</option>
+                  <option value="Hogar">Hogar</option>
+                  <option value="Trabajo">Trabajo</option>
+                  <option value="Estudio">Estudio</option>
+                  <option value="Mascota">Mascota</option>
                 </select>
               </div>
               <div class="col-sm-4">
-                <select class="form-select form-select-sm">
-                  <option selected>Todos los estados</option>
-                  <option>Pendiente</option>
-                  <option>En Proceso</option>
-                  <option>Completada</option>
+                <select id="filterStatus" class="form-select form-select-sm">
+                  <option value="">Todos los estados</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="Completada">Completada</option>
                 </select>
               </div>
-            </form>
+            </div>
           </div>
         </div>
 
-        <!-- RECUADRO / CONTENEDOR PRINCIPAL DE TAREAS -->
+        <!-- RECUADRO DE TAREAS -->
         <div class="card shadow-sm border-0">
-          
-          <!-- Encabezado del contenedor con contador -->
           <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
             <h2 class="h5 mb-0 fw-bold">Lista de Tareas</h2>
-            <span class="badge bg-primary rounded-pill">Tareas registradas</span>
+            <span id="taskCounter" class="badge bg-primary rounded-pill">0 Tareas registradas</span>
           </div>
 
-          <!-- ÁREA SCROLLEABLE (max-height y overflow-y-auto) -->
+          <!-- CONTENEDOR DINÁMICO DE TARJETAS -->
           <div class="card-body overflow-y-auto p-3" style="max-height: 500px;">
-            
-            <div class="row row-cols-1 g-3">
-              
-              <!-- TARJETA 1 -->
-              <div class="col">
-                <div class="card border shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <h3 class="h6 card-title mb-0 fw-bold">Sacar la basura</h3>
-                      <span class="badge bg-light text-body border">Hogar</span>
-                    </div>
-                    <p class="card-text text-muted small mb-3">Alistar las bolsas para sacar, cambiar las bolsas a las canecas y separar el reciclaje.</p>
-                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                      <div>
-                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle me-1"></i>Pendiente</span>
-                        <!-- <span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>En Desarrollo</span> -->
-                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>05/08/2026</small>
-                      </div>
-                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- TARJETA 2 -->
-              <div class="col">
-                <div class="card border shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <h3 class="h6 card-title mb-0 fw-bold">Construir mi proyecto personal</h3>
-                      <span class="badge bg-light text-body border">Estudio</span>
-                    </div>
-                    <p class="card-text text-muted small mb-3">Inicializar el proyecto, crear rama main, estructurar con Bootstrap y vincularlo con GitHub.</p>
-                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                      <div>
-                        <span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>En Desarrollo</span>
-                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>05/08/2026</small>
-                      </div>
-                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- TARJETA 3 -->
-              <div class="col">
-                <div class="card border shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <h3 class="h6 card-title mb-0 fw-bold">Control Ramona</h3>
-                      <span class="badge bg-light text-body border">Mascota</span>
-                    </div>
-                    <p class="card-text text-muted small mb-3">Llevar a Ramona al veterinario para control y vacunación.</p>
-                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                      <div>
-                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Completada</span>
-                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>04/08/2026</small>
-                      </div>
-                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- TARJETA 4 -->
-              <div class="col">
-                <div class="card border shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <h3 class="h6 card-title mb-0 fw-bold">Hacer lista de mercado</h3>
-                      <span class="badge bg-light text-body border">Hogar</span>
-                    </div>
-                    <p class="card-text text-muted small mb-3">Verificar que insumos de cocina y aseo se agotaron para comprar.</p>
-                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                      <div>
-                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle me-1"></i>Pendiente</span>
-                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>15/08/2026</small>
-                      </div>
-                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- TARJETA 5 -->
-              <div class="col">
-                <div class="card border shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                      <h3 class="h6 card-title mb-0 fw-bold">Arreglar CV</h3>
-                      <span class="badge bg-light text-body border">Trabajo</span>
-                    </div>
-                    <p class="card-text text-muted small mb-3">Rediseñar mi hoja de vida, ordenarla segun el formato brindado por Generation.</p>
-                    <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                      <div>
-                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle me-1"></i>Pendiente</span>
-                        <small class="text-secondary ms-2"><i class="bi bi-calendar-event me-1"></i>15/08/2026</small>
-                      </div>
-                      <button class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="bi bi-trash"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div> <!-- Fin de Grid Interno -->
-
-          </div> <!-- Fin del área scrolleable -->
-        </div> <!-- Fin de Card Contenedor -->
+            <div id="taskList" class="row row-cols-1 g-3">
+              <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+            </div>
+          </div>
+        </div>
         
       </div>
 
     </div>
   </main>
 
-  <!-- Bootstrap 5 JS Bundle CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
