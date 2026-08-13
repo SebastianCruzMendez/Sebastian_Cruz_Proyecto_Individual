@@ -6,7 +6,7 @@ Aplicación web desarrollada para la gestión y organización de tareas cotidian
 
 * **Trello:** https://trello.com/invite/b/6a46a0a13678f5309f5b3982/ATTIa42f6ad5645a644c7dc00e8ed54512853D88F71F/ind-project
 * **Figma:** https://www.figma.com/design/MJhuXDGMFaF9Hcr4FjGIxa/Poryecto-Ind.?node-id=0-1&t=qb7PxWPln31q1x7z-1
-* **Demo (GitHub Pages):** [Enlace a tu GitHub Pages desplegado]
+* **Demo (GitHub Pages):** https://sebastiancruzmendez.github.io/Sebastian_Cruz_Proyecto_Individual/
 
 ## Tecnologías Utilizadas
 
