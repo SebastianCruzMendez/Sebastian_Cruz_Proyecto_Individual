@@ -1,16 +1,13 @@
-/* ===================================================
-   PALETA DE COLORES - EEVEE THEME
-   =================================================== */
 :root {
-    --eevee-bg: #f5ede4;           
-    --eevee-body: #c28f5b;         
-    --eevee-border: #e3d1c1;       
-    --eevee-accent: #6a4b35;       
-    --eevee-accent-hover: #4a3221;  
-    --eevee-alert: #d46c59;        
-    --eevee-text: #3b2c21;         
-    --eevee-text-muted: #8c7868;   
-    --eevee-card-bg: #ffffff;      
+  --eevee-bg: #f5ede4;
+  --eevee-body: #02393F;
+  --eevee-card-bg: #ffffff;
+  --eevee-border: #e3d1c1;
+  --eevee-accent: #A64F03;
+  --eevee-accent-hover: #4a3221;
+  --eevee-alert: #d46c59;
+  --eevee-text: #3b2c21;
+  --eevee-text-muted: #8c7868;
 }
 
 body {
@@ -22,7 +19,7 @@ body {
 header.bg-primary {
   background-color: var(--eevee-body) !important;
   color: #fff !important;
-  border-bottom: 3px solid var(--eevee-accent);
+  border-bottom: 3px solid var(--eevee-card-bg);
 }
 
 .card {
@@ -30,7 +27,7 @@ header.bg-primary {
   color: var(--eevee-text) !important;
   border: 1px solid var(--eevee-border) !important;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(106, 75, 53, 0.08) !important; 
+  box-shadow: 0 4px 6px rgba(106, 75, 53, 0.08) !important;
 }
 
 .card-header {
@@ -39,25 +36,10 @@ header.bg-primary {
   color: var(--eevee-accent) !important;
 }
 
-.form-control, 
-.form-select {
+.form-control, .form-select {
   background-color: #ffffff !important;
   color: var(--eevee-text) !important;
   border: 1px solid var(--eevee-border) !important;
-}
-
-.form-control::placeholder {
-  color: var(--eevee-text-muted) !important;
-}
-
-.form-control:focus, 
-.form-select:focus {
-  border-color: var(--eevee-body) !important;
-  box-shadow: 0 0 0 0.25rem rgba(194, 143, 91, 0.25) !important;
-}
-
-.form-label {
-  color: var(--eevee-accent) !important;
 }
 
 .btn-primary {
@@ -65,67 +47,19 @@ header.bg-primary {
   border-color: var(--eevee-accent) !important;
   color: #fff !important;
   font-weight: 600;
-  transition: all 0.3s ease;
-  border-radius: 8px;
 }
 
 .btn-primary:hover {
   background-color: var(--eevee-accent-hover) !important;
   border-color: var(--eevee-accent-hover) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(106, 75, 53, 0.3);
 }
-
-.btn-outline-danger {
-  color: var(--eevee-alert) !important;
-  border-color: var(--eevee-alert) !important;
-}
-
-.btn-outline-danger:hover {
-  background-color: var(--eevee-alert) !important;
-  color: #fff !important;
-}
-
-.alert-danger {
-  background-color: rgba(212, 108, 89, 0.1) !important;
-  border: 1px solid var(--eevee-alert) !important;
-  color: var(--eevee-alert) !important;
-}
-
-.badge.bg-light {
-  background-color: var(--eevee-bg) !important;
-  color: var(--eevee-accent) !important;
-  border: 1px solid var(--eevee-border) !important;
-}
-
-.badge.bg-primary {
-  background-color: var(--eevee-body) !important;
-  color: #fff !important;
-}
-
-.text-muted, 
-.text-secondary {
-  color: var(--eevee-text-muted) !important;
-}
-
-.text-dark {
-  color: var(--eevee-text) !important;
-}
-
-.overflow-y-auto::-webkit-scrollbar {
-  width: 8px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-track {
-  background: var(--eevee-bg);
-  border-radius: 4px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb {
-  background: var(--eevee-body);
-  border-radius: 4px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: var(--eevee-accent);
+body {
+  /* Ruta a tu imagen local */
+  background-image: url('../img/fondo1.jpg'); 
+  
+  /* Ajustes para adaptarla a la pantalla */
+  background-size: cover;       /* Cubre toda la pantalla sin deformarse */
+  background-position: center;  /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-attachment: fixed;/* Mantiene el fondo fijo al hacer scroll */
 }
