@@ -1,15 +1,57 @@
-// 1. Instancia de TaskManager y verificación en consola (Exigencia Parte 1)
+// Instancia global de TaskManager
 const taskManager = new TaskManager();
-console.log(taskManager.tasks); // Imprime [] en la consola de desarrollador
 
-// 2. Función de interacción para marcar/desmarcar tarea como completada (Exigencia Parte 2)
+// Elementos del DOM
+const newTaskForm = document.querySelector('#taskForm'); // Asegúrate que tu <form> en HTML tenga id="taskForm" o id="newTaskForm"
+const alertError = document.querySelector('#alertError');
+const alertMessage = document.querySelector('#alertMessage');
+
+// Escuchar el evento submit del formulario
+newTaskForm.addEventListener('submit', function (event) {
+  // Prevenir que la página se recargue
+  event.preventDefault();
+
+  // Recuperar los elementos de entrada
+  const nameInput = document.querySelector('#newTaskNameInput');
+  const descriptionInput = document.querySelector('#newTaskDescription');
+  const dueDateInput = document.querySelector('#newTaskDueDate');
+
+  // Obtener y limpiar los valores
+  const name = nameInput.value.trim();
+  const description = descriptionInput.value.trim();
+  const dueDate = dueDateInput.value;
+
+  // Validación de campos
+  if (name === '' || description === '' || dueDate === '') {
+    mostrarAlerta('Por favor, completa todos los campos requeridos.');
+    return;
+  }
+
+  // Si la validación es exitosa, ocultar alertas previas
+  alertError.classList.add('d-none');
+
+  // Registrar la tarea en TaskManager usando el método addTask()
+  taskManager.addTask(name, description, dueDate);
+
+  // Verificar en la consola el estado de las tareas
+  console.log('Tarea agregada con éxito. Colección actual:', taskManager.tasks);
+
+  // Limpiar el formulario
+  newTaskForm.reset();
+});
+
+// Función auxiliar para mostrar mensaje de error
+function mostrarAlerta(mensaje) {
+  alertMessage.textContent = mensaje;
+  alertError.classList.remove('d-none');
+}
+
+// Función de interacción visual (conservada de la Tarea 4)
 function toggleTaskStatus(button) {
-  // Obtener la tarjeta (card) contenedora del botón
   const card = button.closest('.card');
   const taskTitle = card.querySelector('.card-title');
   const taskDescription = card.querySelector('.card-text');
 
-  // Alternar clases visuales de Bootstrap y estilos
   card.classList.toggle('bg-light');
   card.classList.toggle('border-success');
   card.classList.toggle('opacity-75');
@@ -20,7 +62,6 @@ function toggleTaskStatus(button) {
   taskDescription.classList.toggle('text-decoration-line-through');
   taskDescription.classList.toggle('text-muted');
 
-  // Cambiar apariencia e ícono del botón (Toggle)
   if (button.classList.contains('btn-outline-success')) {
     button.classList.remove('btn-outline-success');
     button.classList.add('btn-success');
