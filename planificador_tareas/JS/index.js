@@ -1,74 +1,62 @@
-// Instancia global de TaskManager
 const taskManager = new TaskManager();
 
-// Elementos del DOM
-const newTaskForm = document.querySelector('#taskForm'); // Asegúrate que tu <form> en HTML tenga id="taskForm" o id="newTaskForm"
+taskManager.load();
+taskManager.render();
+
+const newTaskForm = document.querySelector('#taskForm');
 const alertError = document.querySelector('#alertError');
 const alertMessage = document.querySelector('#alertMessage');
+const taskList = document.querySelector('#taskList');
 
-// Escuchar el evento submit del formulario
 newTaskForm.addEventListener('submit', function (event) {
-  // Prevenir que la página se recargue
   event.preventDefault();
 
-  // Recuperar los elementos de entrada
   const nameInput = document.querySelector('#newTaskNameInput');
   const descriptionInput = document.querySelector('#newTaskDescription');
   const dueDateInput = document.querySelector('#newTaskDueDate');
 
-  // Obtener y limpiar los valores
   const name = nameInput.value.trim();
   const description = descriptionInput.value.trim();
   const dueDate = dueDateInput.value;
 
-  // Validación de campos
   if (name === '' || description === '' || dueDate === '') {
     mostrarAlerta('Por favor, completa todos los campos requeridos.');
     return;
   }
 
-  // Si la validación es exitosa, ocultar alertas previas
   alertError.classList.add('d-none');
 
-  // Registrar la tarea en TaskManager usando el método addTask()
   taskManager.addTask(name, description, dueDate);
+  taskManager.save();
+  taskManager.render();
 
-  // Verificar en la consola el estado de las tareas
-  console.log('Tarea agregada con éxito. Colección actual:', taskManager.tasks);
-
-  // Limpiar el formulario
   newTaskForm.reset();
 });
 
-// Función auxiliar para mostrar mensaje de error
+taskList.addEventListener('click', function (event) {
+  if (event.target.classList.contains('delete-button') || event.target.closest('.delete-button')) {
+    const parentTask = event.target.closest('[data-task-id]');
+    const taskId = Number(parentTask.dataset.taskId);
+
+    taskManager.deleteTask(taskId);
+    taskManager.save();
+    taskManager.render();
+  }
+
+  if (event.target.classList.contains('toggle-button') || event.target.closest('.toggle-button')) {
+    const parentTask = event.target.closest('[data-task-id]');
+    const taskId = Number(parentTask.dataset.taskId);
+
+    const task = taskManager.tasks.find(t => t.id === taskId);
+    if (task) {
+      task.status = (task.status === 'Completada') ? 'PORHACER' : 'Completada';
+      taskManager.save();
+      taskManager.render();
+    }
+  }
+});
+
 function mostrarAlerta(mensaje) {
   alertMessage.textContent = mensaje;
   alertError.classList.remove('d-none');
-}
-
-// Función de interacción visual (conservada de la Tarea 4)
-function toggleTaskStatus(button) {
-  const card = button.closest('.card');
-  const taskTitle = card.querySelector('.card-title');
-  const taskDescription = card.querySelector('.card-text');
-
-  card.classList.toggle('bg-light');
-  card.classList.toggle('border-success');
-  card.classList.toggle('opacity-75');
-
-  taskTitle.classList.toggle('text-decoration-line-through');
-  taskTitle.classList.toggle('text-muted');
-
-  taskDescription.classList.toggle('text-decoration-line-through');
-  taskDescription.classList.toggle('text-muted');
-
-  if (button.classList.contains('btn-outline-success')) {
-    button.classList.remove('btn-outline-success');
-    button.classList.add('btn-success');
-    button.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Completada';
-  } else {
-    button.classList.remove('btn-success');
-    button.classList.add('btn-outline-success');
-    button.innerHTML = '<i class="bi bi-circle me-1"></i>Marcar Completada';
-  }
 }
