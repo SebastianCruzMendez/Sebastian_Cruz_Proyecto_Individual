@@ -13,8 +13,11 @@
 <body class="bg-light">
 
   <header class="bg-primary text-white py-3 mb-4 shadow-sm">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
       <h1 class="h3 mb-0"><i class="bi bi-list-check me-2"></i>Planificador de Tareas</h1>
+      <button class="btn btn-calendar-nav btn-sm" data-bs-toggle="modal" data-bs-target="#calendarModal">
+        <i class="bi bi-calendar3 me-1"></i> Calendario
+      </button>
     </div>
   </header>
 
@@ -36,18 +39,23 @@
             <form id="taskForm">
               <div class="mb-3">
                 <label for="newTaskNameInput" class="form-label fw-bold">Nombre tarea</label>
-                <input type="text" class="form-control" id="newTaskNameInput" placeholder="Ej: Comprar alimento">
+                <input type="text" class="form-control" id="newTaskNameInput" placeholder="Ej: Preparar reporte">
               </div>
 
               <div class="mb-3">
                 <label for="newTaskCategory" class="form-label fw-bold">Categoría</label>
                 <select class="form-select" id="newTaskCategory">
                   <option value="" selected disabled>Seleccionar categoría...</option>
-                  <option value="Hogar">Hogar</option>
                   <option value="Trabajo">Trabajo</option>
                   <option value="Estudio">Estudio</option>
-                  <option value="Mascota">Mascota</option>
+                  <option value="Personal">Personal</option>
+                  <option value="Otra">Otra...</option>
                 </select>
+              </div>
+
+              <div class="mb-3 d-none" id="customCategoryContainer">
+                <label for="newCustomCategoryInput" class="form-label fw-bold">Escribe la nueva categoría</label>
+                <input type="text" class="form-control" id="newCustomCategoryInput" placeholder="Ej: Deportes">
               </div>
 
               <div class="mb-3">
@@ -62,12 +70,12 @@
               </div>
 
               <div class="mb-3">
-                <label for="newTaskStatus" class="form-label fw-bold">Estado</label>
-                <select class="form-select" id="newTaskStatus">
-                  <option value="" selected disabled>Seleccionar estado...</option>
-                  <option value="Pendiente">Pendiente</option>
-                  <option value="En Proceso">En Proceso</option>
-                  <option value="Completada">Completada</option>
+                <label for="newTaskPriority" class="form-label fw-bold">Nivel de Prioridad</label>
+                <select class="form-select" id="newTaskPriority">
+                  <option value="" selected disabled>Seleccionar prioridad...</option>
+                  <option value="Alto">Alto</option>
+                  <option value="Medio">Medio</option>
+                  <option value="Bajo">Bajo</option>
                 </select>
               </div>
 
@@ -80,7 +88,6 @@
       </div>
 
       <div class="col-lg-8">
-
         <div class="card shadow-sm border-0 mb-4">
           <div class="card-body py-3">
             <h3 class="h6 fw-bold mb-3"><i class="bi bi-funnel me-1"></i> Filtro Tareas</h3>
@@ -91,18 +98,17 @@
               <div class="col-sm-4">
                 <select id="filterCategory" class="form-select form-select-sm">
                   <option value="">Todas las categorías</option>
-                  <option value="Hogar">Hogar</option>
                   <option value="Trabajo">Trabajo</option>
                   <option value="Estudio">Estudio</option>
-                  <option value="Mascota">Mascota</option>
+                  <option value="Personal">Personal</option>
                 </select>
               </div>
               <div class="col-sm-4">
-                <select id="filterStatus" class="form-select form-select-sm">
-                  <option value="">Todos los estados</option>
-                  <option value="Pendiente">Pendiente</option>
-                  <option value="En Proceso">En Proceso</option>
-                  <option value="Completada">Completada</option>
+                <select id="filterPriority" class="form-select form-select-sm">
+                  <option value="">Todas las prioridades</option>
+                  <option value="Alto">Alto</option>
+                  <option value="Medio">Medio</option>
+                  <option value="Bajo">Bajo</option>
                 </select>
               </div>
             </div>
@@ -114,18 +120,31 @@
             <h2 class="h5 mb-0 fw-bold">Lista de Tareas</h2>
             <span id="taskCounter" class="badge bg-secondary rounded-pill">0 Tareas registradas</span>
           </div>
-
           <div class="card-body">
-            <div id="taskList" class="row">
+            <div id="taskList" class="row task-list-container">
             </div>
           </div>
-
         </div>
-
       </div>
 
     </div>
   </main>
+
+  <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="calendarModalLabel"><i class="bi bi-calendar3 me-2"></i>Días con Tareas
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <ul id="calendarList" class="list-group list-group-flush text-start">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./planificador_tareas/JS/taskManager.js"></script>

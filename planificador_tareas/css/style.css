@@ -12,14 +12,47 @@
 
 body {
   background-color: var(--eevee-bg) !important;
+  background-image: linear-gradient(rgba(245, 237, 228, 0.45), rgba(245, 237, 228, 0.45)), url('../img/fondo1.jpg'); 
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
   color: var(--eevee-text) !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header.bg-primary {
   background-color: var(--eevee-body) !important;
-  color: #fff !important;
+  color: #ffffff !important;
   border-bottom: 3px solid var(--eevee-card-bg);
+}
+
+.btn-calendar-nav {
+  background-color: var(--eevee-card-bg) !important;
+  color: var(--eevee-body) !important;
+  border: 1px solid var(--eevee-border) !important;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-weight: 600;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.btn-calendar-nav:hover {
+  background-color: var(--eevee-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--eevee-accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-calendar-nav i {
+  color: var(--eevee-accent);
+  transition: color 0.25s ease-in-out;
+}
+
+.btn-calendar-nav:hover i {
+  color: #ffffff;
 }
 
 .card {
@@ -36,7 +69,8 @@ header.bg-primary {
   color: var(--eevee-accent) !important;
 }
 
-.form-control, .form-select {
+.form-control, 
+.form-select {
   background-color: #ffffff !important;
   color: var(--eevee-text) !important;
   border: 1px solid var(--eevee-border) !important;
@@ -45,7 +79,7 @@ header.bg-primary {
 .btn-primary {
   background-color: var(--eevee-accent) !important;
   border-color: var(--eevee-accent) !important;
-  color: #fff !important;
+  color: #ffffff !important;
   font-weight: 600;
 }
 
@@ -53,13 +87,190 @@ header.bg-primary {
   background-color: var(--eevee-accent-hover) !important;
   border-color: var(--eevee-accent-hover) !important;
 }
-body {
-  /* Ruta a tu imagen local */
-  background-image: url('../img/fondo1.jpg'); 
-  
-  /* Ajustes para adaptarla a la pantalla */
-  background-size: cover;       /* Cubre toda la pantalla sin deformarse */
-  background-position: center;  /* Centra la imagen */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-attachment: fixed;/* Mantiene el fondo fijo al hacer scroll */
+
+.card .btn-group {
+  gap: 6px;
+}
+
+.card .btn-group .btn {
+  border-radius: 8px !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  transition: all 0.25s ease-in-out;
+  border-width: 1.5px;
+}
+
+.card .btn-group .done-button.btn-outline-success {
+  color: #2e7d32 !important;
+  border-color: #a5d6a7 !important;
+  background-color: #f1f8e9;
+}
+
+.card .btn-group .done-button.btn-outline-success:hover {
+  background-color: #2e7d32 !important;
+  color: #ffffff !important;
+  border-color: #2e7d32 !important;
+  box-shadow: 0 3px 8px rgba(46, 125, 50, 0.25);
+  transform: translateY(-1px);
+}
+
+.card .btn-group .done-button.btn-success {
+  background-color: #2e7d32 !important;
+  border-color: #2e7d32 !important;
+  box-shadow: 0 2px 4px rgba(46, 125, 50, 0.2);
+}
+
+.card .btn-group .edit-button {
+  color: var(--eevee-body) !important;
+  border-color: #b2dfdb !important;
+  background-color: #e0f2f1;
+}
+
+.card .btn-group .edit-button:hover {
+  background-color: var(--eevee-body) !important;
+  color: #ffffff !important;
+  border-color: var(--eevee-body) !important;
+  box-shadow: 0 3px 8px rgba(2, 57, 63, 0.25);
+  transform: translateY(-1px);
+}
+
+.card .btn-group .delete-button {
+  color: var(--eevee-alert) !important;
+  border-color: #f5c6cb !important;
+  background-color: #fdf2f2;
+}
+
+.card .btn-group .delete-button:hover {
+  background-color: var(--eevee-alert) !important;
+  color: #ffffff !important;
+  border-color: var(--eevee-alert) !important;
+  box-shadow: 0 3px 8px rgba(212, 108, 89, 0.25);
+  transform: translateY(-1px);
+}
+
+.task-list-container {
+  max-height: 520px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+}
+
+.task-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-list-container::-webkit-scrollbar-track {
+  background: var(--eevee-bg);
+  border-radius: 4px;
+}
+
+.task-list-container::-webkit-scrollbar-thumb {
+  background: var(--eevee-border);
+  border-radius: 4px;
+}
+
+.task-list-container::-webkit-scrollbar-thumb:hover {
+  background: var(--eevee-accent);
+}
+
+#calendarModal .modal-content {
+  background-color: var(--eevee-card-bg);
+  border: 2px solid var(--eevee-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+#calendarModal .modal-header {
+  background-color: var(--eevee-body);
+  color: #ffffff;
+  border-bottom: 2px solid var(--eevee-border);
+}
+
+#calendarModal .modal-title {
+  color: #ffffff;
+}
+
+#calendarModal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.calendar-grid-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  color: var(--eevee-accent);
+  font-size: 0.85rem;
+}
+
+.calendar-day-label {
+  padding: 4px 0;
+}
+
+.calendar-grid-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  background-color: #faf4ee;
+  border: 1px solid var(--eevee-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--eevee-text);
+  transition: all 0.2s ease;
+}
+
+.calendar-day.empty {
+  background-color: transparent;
+  border: none;
+}
+
+.calendar-day.is-today {
+  border: 2px solid var(--eevee-body);
+  font-weight: bold;
+}
+
+.calendar-day.has-tasks {
+  background-color: #fbeee0;
+  border-color: var(--eevee-accent);
+  font-weight: bold;
+  color: var(--eevee-accent);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(166, 79, 3, 0.15);
+}
+
+.calendar-day.has-tasks:hover {
+  transform: scale(1.08);
+  background-color: var(--eevee-accent);
+  color: #ffffff;
+}
+
+.task-badge-dot {
+  position: absolute;
+  bottom: 3px;
+  font-size: 0.65rem;
+  background-color: var(--eevee-accent);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day.has-tasks:hover .task-badge-dot {
+  background-color: #ffffff;
+  color: var(--eevee-accent);
 }
