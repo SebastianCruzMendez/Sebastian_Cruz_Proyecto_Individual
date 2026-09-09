@@ -32,6 +32,18 @@ Aplicación web interactiva para la gestión y seguimiento de tareas diarias, de
 * **JavaScript (ES6+)**: Programación Orientada a Objetos (POO) modular con la clase `TaskManager`, manipulación del DOM y consumo de LocalStorage.
 
 ---
+## Enlaces del Proyecto
+
+* **Trello:** https://trello.com/invite/b/6a46a0a13678f5309f5b3982/ATTIa42f6ad5645a644c7dc00e8ed54512853D88F71F/ind-project
+* **Figma:** https://www.figma.com/design/MJhuXDGMFaF9Hcr4FjGIxa/Poryecto-Ind.?node-id=0-1&t=qb7PxWPln31q1x7z-1
+
+
+## Deploy del Proyecto
+Puedes acceder a la versión desplegada en vivo de la aplicación en el siguiente enlace:
+
+👉 Ver Aplicación en Vivo
+* **Demo (GitHub Pages):** https://sebastiancruzmendez.github.io/Sebastian_Cruz_Proyecto_Individual/
+---
 
 ##  Estructura del Proyecto
 
@@ -50,14 +62,3 @@ Planificador-Tareas/
 ---
 
 
-## Enlaces del Proyecto
-
-* **Trello:** https://trello.com/invite/b/6a46a0a13678f5309f5b3982/ATTIa42f6ad5645a644c7dc00e8ed54512853D88F71F/ind-project
-* **Figma:** https://www.figma.com/design/MJhuXDGMFaF9Hcr4FjGIxa/Poryecto-Ind.?node-id=0-1&t=qb7PxWPln31q1x7z-1
-
-
-## Deploy del Proyecto
-Puedes acceder a la versión desplegada en vivo de la aplicación en el siguiente enlace:
-
-👉 Ver Aplicación en Vivo
-* **Demo (GitHub Pages):** https://sebastiancruzmendez.github.io/Sebastian_Cruz_Proyecto_Individual/
